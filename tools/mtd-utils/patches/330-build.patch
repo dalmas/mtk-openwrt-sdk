@@ -1,0 +1,22 @@
+--- a/mkfs.ubifs/Makefile	2022-04-21 16:07:45.705592691 -0300
++++ b/mkfs.ubifs/Makefile	2022-04-21 16:47:13.556385664 -0300
+@@ -26,7 +26,7 @@
+ endif
+ endif
+ 
+-LDLIBS_mkfs.ubifs = -lz $(LZOLDLIBS) $(XZLDLIBS) -lm -luuid -L$(BUILDDIR)/../ubi-utils/ -lubi
++LDLIBS_mkfs.ubifs = -lz $(LZOLDLIBS) $(XZLDLIBS) -lm -luuid -L$(BUILDDIR)/.. -lubi
+ LDLIBS_mkfs.ubifs += -L$(BUILDDIR)/../lib -lmtd
+ LDLIBS_mkfs.ubifs += $(ZLIBLDFLAGS) $(LZOLDFLAGS) $(XZLDFLAGS)
+ 
+--- a/ubi-utils/Makefile	2022-04-21 16:07:45.715592812 -0300
++++ b/ubi-utils/Makefile	2022-04-21 16:26:39.267380191 -0300
+@@ -12,7 +12,7 @@
+           ubidetach ubinize ubiformat ubirename mtdinfo ubirsvol
+ 
+ VPATH = src
+-LDLIBS = -L$(BUILDDIR)/../lib -lmtd
++LDLIBS = -L$(BUILDDIR)/lib -lmtd
+ 
+ include ../common.mk
+ 

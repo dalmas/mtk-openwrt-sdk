@@ -1,0 +1,27 @@
+diff -ru squashfs4.2.org/squashfs-tools/mksquashfs.c squashfs4.2/squashfs-tools/mksquashfs.c
+--- squashfs4.2.org/squashfs-tools/mksquashfs.c	2022-04-10 00:13:20.163373887 -0300
++++ squashfs4.2/squashfs-tools/mksquashfs.c	2022-04-10 00:26:06.229807652 -0300
+@@ -52,6 +52,7 @@
+ #include <regex.h>
+ #include <fnmatch.h>
+ #include <sys/wait.h>
++#include <sys/sysmacros.h>
+ 
+ #ifndef linux
+ #ifndef __CYGWIN__
+Somente em squashfs4.2.org/squashfs-tools: mksquashfs.c~
+Somente em squashfs4.2/squashfs-tools: mksquashfs.c~.orig
+Somente em squashfs4.2/squashfs-tools: mksquashfs.c~.rej
+diff -ru squashfs4.2.org/squashfs-tools/unsquashfs.c squashfs4.2/squashfs-tools/unsquashfs.c
+--- squashfs4.2.org/squashfs-tools/unsquashfs.c	2022-04-10 00:13:20.161373863 -0300
++++ squashfs4.2/squashfs-tools/unsquashfs.c	2022-04-10 00:26:06.236807737 -0300
+@@ -31,6 +31,8 @@
+ 
+ #include <sys/types.h>
+ 
++#include <sys/sysmacros.h>
++
+ struct cache *fragment_cache, *data_cache;
+ struct queue *to_reader, *to_deflate, *to_writer, *from_writer;
+ pthread_t *thread, *deflator_thread;
+

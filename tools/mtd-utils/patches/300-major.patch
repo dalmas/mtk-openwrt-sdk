@@ -1,0 +1,107 @@
+*** a/lib/libmtd.c	2012-01-09 14:38:56.000000000 +0000
+--- b/lib/libmtd.c	2012-01-09 20:57:34.363506783 +0000
+***************
+*** 429,435 ****
+  static int dev_node2num(struct libmtd *lib, const char *node, int *mtd_num)
+  {
+  	struct stat st;
+! 	int i, major, minor;
+  	struct mtd_info info;
+
+  	if (stat(node, &st))
+--- 429,435 ----
+  static int dev_node2num(struct libmtd *lib, const char *node, int *mtd_num)
+  {
+  	struct stat st;
+! 	int i, majorx, minorx;
+  	struct mtd_info info;
+
+  	if (stat(node, &st))
+***************
+*** 441,448 ****
+  		return -1;
+  	}
+
+! 	major = major(st.st_rdev);
+! 	minor = minor(st.st_rdev);
+
+  	if (mtd_get_info((libmtd_t *)lib, &info))
+  		return -1;
+--- 441,448 ----
+  		return -1;
+  	}
+
+! 	majorx = major(st.st_rdev);
+! 	minorx = minor(st.st_rdev);
+
+  	if (mtd_get_info((libmtd_t *)lib, &info))
+  		return -1;
+***************
+*** 459,465 ****
+  			return -1;
+  		}
+
+! 		if (major1 == major && minor1 == minor) {
+  			errno = 0;
+  			*mtd_num = i;
+  			return 0;
+--- 459,465 ----
+  			return -1;
+  		}
+
+! 		if (major1 == majorx && minor1 == minorx) {
+  			errno = 0;
+  			*mtd_num = i;
+  			return 0;
+***************
+*** 1369,1375 ****
+  {
+  	struct stat st;
+  	struct mtd_info info;
+! 	int i, major, minor;
+  	struct libmtd *lib = (struct libmtd *)desc;
+
+  	if (stat(node, &st))
+--- 1369,1375 ----
+  {
+  	struct stat st;
+  	struct mtd_info info;
+! 	int i, majorx, minorx;
+  	struct libmtd *lib = (struct libmtd *)desc;
+
+  	if (stat(node, &st))
+***************
+*** 1381,1388 ****
+  		return -1;
+  	}
+
+! 	major = major(st.st_rdev);
+! 	minor = minor(st.st_rdev);
+
+  	if (mtd_get_info((libmtd_t *)lib, &info))
+  		return -1;
+--- 1381,1388 ----
+  		return -1;
+  	}
+
+! 	majorx = major(st.st_rdev);
+! 	minorx = minor(st.st_rdev);
+
+  	if (mtd_get_info((libmtd_t *)lib, &info))
+  		return -1;
+***************
+*** 1402,1408 ****
+  			return -1;
+  		}
+
+! 		if (major1 == major && minor1 == minor)
+  			return 1;
+  	}
+
+--- 1402,1408 ----
+  			return -1;
+  		}
+
+! 		if (major1 == majorx && minor1 == minorx)
+  			return 1;
+  	}
